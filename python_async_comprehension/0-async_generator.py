@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Create a async function
-"""
-import asyncio
-import random
+"""Module for async_generator coroutine"""
 
+import asyncio  # Importing the asyncio module for async features
+import random   # Importing the random module to generate random numbers
 
-async def wait_random(max_delay: int = 10) -> float:
-    """Returns a random number between 0 and max delay"""
-    ranNum = random.uniform(0, max_delay)
-    await asyncio.sleep(ranNum)
-    return ranNum
+async def async_generator():
+    """An async generator coroutine that yields 10 random numbers
+    Each number is yielded after an asynchronous wait of 1 second"""
+    for _ in range(10):  # Looping 10 times
+        await asyncio.sleep(1)  # Asynchronously wait for 1 second
+        yield random.uniform(0, 10)  # Yielding a random number between 0 and 10
