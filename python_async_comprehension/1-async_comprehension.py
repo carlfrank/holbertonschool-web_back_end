@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""Let's execute multiple coroutines at the same time with async"""
+"""import async_generator and write a coroutine
+async_comprehension that takes no arguments.
+The coroutine will collect 10 random numbers"""
 import asyncio
-from typing import List
-wait_random = __import__('0-basic_async_syntax').wait_random
+import random
+from typing import Generator
+from importlib import import_module
+
+module_name = '0-async_generator'
+module = import_module(module_name)
+async_generator = module.async_generator
 
 
-async def wait_n(n: int, max_delay: int) -> List[float]:
-    """ return the list of all the delays (float values)."""
-    tasks = [wait_random(max_delay) for _ in range(n)]
-    delay_list = []
-    for future in asyncio.as_completed(tasks):
-        result = await future
-        delay_list.append(result)
-    return delay_list
+async def async_comprehension() -> Generator[float, None, None]:
+    """coroutine that takes no arguments"""
+    return [i async for i in async_generator()]
