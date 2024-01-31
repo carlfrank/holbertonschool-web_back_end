@@ -1,4 +1,4 @@
-function getListStudentIds (students) {
+function getListStudentIds(students) {
   if (!Array.isArray(students)) {
     return [];
   }
